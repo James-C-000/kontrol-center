@@ -36,8 +36,8 @@
 		"ServiceTypes": [
 			"Plasma/Applet"
 		],
-		"Version": "2.8.0",
-		"Website": "https://github.com/EliverLara/kde-control-station/tree/plasma6"
+		"Version": "2.12.0",
+		"Website": "https://github.com/James-C-000/kde-control-station"
 	},
 	"X-Plasma-API-Minimum-Version": "6.0",
 	"X-Plasma-MainScript": "ui/main.qml",
