@@ -86,31 +86,6 @@ function toggleDnd() {
     notificationSettings.save()
 }
 
-function revokeInhibitions() {
-    notificationSettings.notificationsInhibitedUntil = undefined;
-    notificationSettings.revokeApplicationInhibitions();
-    // overrules current mirrored screen setup, updates again when screen configuration changes
-    notificationSettings.screensMirrored = false;
-
-    notificationSettings.save();
-}
-
-function toggleRedshiftInhibition() {
-    if (!monitor.available) {
-        return;
-    }
-    switch (inhibitor.state) {
-    case Redshift.Inhibitor.Inhibiting:
-    case Redshift.Inhibitor.Inhibited:
-        inhibitor.uninhibit();
-        break;
-    case Redshift.Inhibitor.Uninhibiting:
-    case Redshift.Inhibitor.Uninhibited:
-        inhibitor.inhibit();
-        break;
-    }
-}
-
 function volumePercent(volume) {
     return volume / Vol.PulseAudio.NormalVolume * 100
 }

@@ -31,7 +31,7 @@ KCM.SimpleKCM {
             connectSource(cmd)
         }
 
-        onNewData: {
+        onNewData: (sourceName, data) => {
             var colors = data["stdout"].split("\n")
             if(!preferChangeGlobalTheme.checked) {
                 for (var i = 0; i < colors.length; i++) { // parse command output
@@ -80,7 +80,7 @@ KCM.SimpleKCM {
 
     Connections {
         target: executable
-        onColorsListReady: {
+        function onColorsListReady(colors) {
             cBoxA.model = colors
             cBoxB.model = colors
             // look for color in list

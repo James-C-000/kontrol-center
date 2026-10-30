@@ -27,9 +27,15 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
 ### Fixed
 - The network list rescans for nearby Wi-Fi networks while it's open.
 - Custom command buttons no longer lose their hover effect after showing a success/failure color.
+- The settings page's panel-icon preview checks the form factor and no longer fails on a missing import.
+- Settings warnings: binding loops on the custom command icon buttons, an undefined font, and deprecated
+  signal handlers on the Color schemes page.
+- The toggle-limit hint and layout-editing hint in the settings are translatable.
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.
+- Unused leftovers: the Plasma 5 `CMakeLists.txt`, `brightness.js` and Redshift component, the unused
+  `LongButton` component, bundled icons that the theme now provides, and a stray `.gitignore`.
 
 ## [Unreleased]
 ### Fixed

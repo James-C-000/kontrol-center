@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Dialogs
 
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasmoid
 import org.kde.iconthemes as KIconThemes
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -182,7 +183,7 @@ KCM.SimpleKCM {
             KSvg.FrameSvgItem {
                 id: previewFrame
                 anchors.centerIn: parent
-                imagePath: Plasmoid.location === PlasmaCore.Types.Vertical || Plasmoid.location === PlasmaCore.Types.Horizontal
+                imagePath: Plasmoid.formFactor === PlasmaCore.Types.Vertical || Plasmoid.formFactor === PlasmaCore.Types.Horizontal
                         ? "widgets/panel-background" : "widgets/background"
                 width: Kirigami.Units.iconSizes.medium + fixedMargins.left + fixedMargins.right
                 height: Kirigami.Units.iconSizes.medium + fixedMargins.top + fixedMargins.bottom
@@ -243,7 +244,7 @@ KCM.SimpleKCM {
         Kirigami.InlineMessage {
             id: inlineMessage
             Layout.fillWidth: true
-            text: "You could edit your layout by right clicking on the widget > Edit Layout"
+            text: i18n("You can edit your layout by right-clicking the widget and choosing Edit Layout.")
             visible: layout.currentIndex === 4
         }
 
@@ -362,7 +363,7 @@ KCM.SimpleKCM {
                 id: cmdIcon1
                 Kirigami.FormData.label: i18n("Icon:")
                 icon.width: Kirigami.Units.iconSizes.medium
-                icon.height: icon.width
+                icon.height: Kirigami.Units.iconSizes.medium
                 onClicked: {
                     iconDialog.open()
                     iconDialog.target= cmdIcon1
@@ -388,7 +389,7 @@ KCM.SimpleKCM {
                 id: cmdIcon2
                 Kirigami.FormData.label: i18n("Icon:")
                 icon.width: Kirigami.Units.iconSizes.medium
-                icon.height: icon.width
+                icon.height: Kirigami.Units.iconSizes.medium
                 onClicked: {
                     iconDialog.open()
                     iconDialog.target= cmdIcon2
@@ -396,8 +397,8 @@ KCM.SimpleKCM {
             }
         }
         Label {
-            text: i18n(`You can enable only ${maxNum} toggle buttons at a time.`)
-            font: Kirigami.Theme.smallestFont
+            text: i18np("You can enable only %1 toggle button at a time.", "You can enable only %1 toggle buttons at a time.", maxNum)
+            font: Kirigami.Theme.smallFont
             color: Kirigami.Theme.neutralTextColor
             Layout.fillWidth: true
             wrapMode: Text.Wrap
