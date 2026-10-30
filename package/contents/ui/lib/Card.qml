@@ -79,7 +79,9 @@ Rectangle {
         border.color: (rectangle.hovered && rectangle.interactive && filled)
                       ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.6)
                       : root.cardBorderColor
-        border.width: root.showBorders && bordr ? 1 : 0
+        border.width: !(root.showBorders && bordr) ? 0
+                      : (rectangle.hovered && rectangle.interactive && filled) ? 3
+                      : 1
         radius: cornerRadius
         z: -1
 
