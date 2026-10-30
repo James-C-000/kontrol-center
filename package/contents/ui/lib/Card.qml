@@ -20,9 +20,9 @@ Rectangle {
     property bool smallLeftMargins: false
     property bool smallRightMargins: false
     /******
-     This is used to manage widget background color so we can change the color depending on widget status(Command Run)
+     Temporarily tints the card to show a status (Command Run); set back to "transparent" to clear it
     *******/
-    property alias customBgColor: cardBg.color
+    property color customBgColor: "transparent"
 
 
     property bool flat: false
@@ -73,6 +73,7 @@ Rectangle {
         anchors.fill: parent
         anchors.margins: rectangle.gap
         color: !filled ? "transparent"
+               : rectangle.customBgColor.a > 0 ? rectangle.customBgColor
                : (rectangle.hovered && rectangle.interactive) ? root.cardHoverColor
                : root.cardColor
 

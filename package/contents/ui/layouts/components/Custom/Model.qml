@@ -12,6 +12,7 @@ Item {
         "battery": 2,
         "network": 2,
         "dnd": 2,
+        "vpn": 2,
         "battery": 2,
         "bluetooth": 2,
         "schemes": 2,
@@ -28,6 +29,7 @@ Item {
         "battery": 1,
         "network": 1,
         "dnd": 1,
+        "vpn": 1,
         "battery": 1,
         "bluetooth": 1,
         "schemes": 1,
@@ -370,9 +372,56 @@ Item {
         },
         {
             name: "dnd",
-            displayName: "Do not disturb",
+            displayName: "Notifications",
             colSpan: 1,
             componentUrl: "../components/DndButton.qml",
+            props: {
+                flat: false,
+                roundedWidget: false,
+                showTitle: true,
+                isLongButton: false
+            },
+
+            actions: [
+
+                {
+                    name: "Long button",
+                    checkable: true,
+                    value: false,
+                    changes: "isLongButton",
+                    valueType: "size"
+                },
+
+                {
+                    name: "Flat",
+                    checkable: true,
+                    value: false,
+                    changes: "flat",
+                    valueType: "bool"
+                },
+                {
+                    name: "Round widget",
+                    checkable: true,
+                    value: false,
+                    changes: "roundedWidget",
+                    valueType: "bool"
+                },
+                {
+                    name: "Show title",
+                    checkable: true,
+                    value: true,
+                    changes: "showTitle",
+                    valueType: "bool"
+                }
+
+
+            ]
+        },
+        {
+            name: "vpn",
+            displayName: "VPN",
+            colSpan: 1,
+            componentUrl: "../components/VpnBtn.qml",
             props: {
                 flat: false,
                 roundedWidget: false,
@@ -1043,7 +1092,7 @@ Item {
         },
         {
             name: "dnd",
-            displayName: "Do not disturb",
+            displayName: "Notifications",
             colSpan: 1,
             componentUrl: "../components/DndButton.qml",
             props: {

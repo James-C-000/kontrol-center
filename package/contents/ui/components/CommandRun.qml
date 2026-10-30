@@ -16,10 +16,6 @@ Lib.CardButton {
     property string icon;
     property string command;
     
-    property color normalBgColor: root.enableTransparency ? 
-           Qt.rgba(root.themeBgColor.r, root.themeBgColor.g, root.themeBgColor.b, root.transparencyLevel/100)
-           : root.themeBgColor
-           
     function exec(cmd) {
         executable.connectSource(cmd)
     }
@@ -33,7 +29,7 @@ Lib.CardButton {
         id: timer
         interval: 1500; 
         onTriggered: {
-            cmdRunButton.customBgColor = normalBgColor;
+            cmdRunButton.customBgColor = "transparent";
         }
     }
     

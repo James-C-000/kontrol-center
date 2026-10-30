@@ -43,7 +43,7 @@ Lib.CardButton {
               : notificationsBtn.unread > 0 ? "notification-active-symbolic"
               : "notification-inactive-symbolic"
         selected: notificationsBtn.inhibited
-        enableQuickAction: true
+        enableQuickAction: root.enableQuickActions
         onQuickActionTriggered: Funcs.toggleDnd()
 
         Kirigami.Badge {

@@ -15,8 +15,6 @@ PlasmoidItem {
 
     // PROPERTIES
     property bool animations: plasmoid.configuration.animations
-    property bool enableTransparency: Plasmoid.configuration.transparency
-    property int transparencyLevel: Plasmoid.configuration.transparencyLevel
     property bool showBorders: Plasmoid.configuration.showBorders
     property var animationDuration: Kirigami.Units.veryShortDuration
 

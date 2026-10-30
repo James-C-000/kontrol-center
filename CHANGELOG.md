@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.12.0] - 2026-10-29
+Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-control-station) (`plasma6`, store version 2.11.0).
+
+### Added
+- Notification center: the widget hosts Plasma's notification server and lists notifications on a new
+  page instead of showing popups, with action buttons, dismiss, Clear All, Do Not Disturb and a shortcut
+  to notification settings. Apps hidden from popups in System Settings are hidden from the list.
+- Unread notification badges on the Notifications tile and the panel icon.
+- VPN tile (WireGuard included): the icon toggles the most recently used VPN, the tile opens the network list.
+  Also available in the Custom layout.
+
+### Changed
+- Cards are flat surfaces tinted from the color scheme, with Breeze corner radii and an accent outline on hover,
+  replacing the drop shadows and fixed outlines.
+- Fonts and spacing follow the system theme (still multiplied by the Scale setting).
+- Plasma's native sliders are used by default; the custom sliders use theme colors.
+- All toggle tiles share the same rounded icon well, and use icons from the icon theme.
+- The Do Not Disturb tile is now the Notifications tile; its icon still toggles Do Not Disturb.
+- Night Light's icon toggles suspending Night Light.
+
+### Fixed
+- The network list rescans for nearby Wi-Fi networks while it's open.
+- Custom command buttons no longer lose their hover effect after showing a success/failure color.
+
+### Removed
+- The "Enable transparency" and transparency level settings, which no longer apply to the new card style.
+
 ## [Unreleased]
 ### Fixed
 - Icons now follow the colour scheme correctly.

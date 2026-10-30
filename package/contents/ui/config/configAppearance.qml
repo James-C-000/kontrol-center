@@ -21,7 +21,6 @@ KCM.SimpleKCM {
 
     property alias cfg_scale: scale.value
     property alias cfg_layout: layout.currentIndex
-    property alias cfg_transparency: transparency.checked
     property alias cfg_showKDEConnect: showKDEConnect.checked
     property alias cfg_showNightLight: showNightLight.checked
     property alias cfg_showColorSwitcher: showColorSwitcher.checked
@@ -45,7 +44,6 @@ KCM.SimpleKCM {
     property alias cfg_cmdRun2: cmdRun2.text
     property alias cfg_cmdTitle2: cmdTitle2.text
 
-    property alias cfg_transparencyLevel: transparencyLevel.value
     property alias cfg_showBorders: showBorders.checked
 
     property alias cfg_volume_widget_flat: volume_widget_flat.checked
@@ -261,20 +259,6 @@ KCM.SimpleKCM {
         CheckBox {
             id: animations
             text: i18n("Enable animations (Experimental)")
-        }
-        CheckBox {
-            id: transparency
-            text: i18n("Enable transparency")
-        }
-        Slider {
-            id: transparencyLevel
-            visible: transparency.checked
-            Kirigami.FormData.label: i18n("Transparency level of widgets (%1%):", 100-value)
-            from: 100
-            value: 40
-            to: 0
-            stepSize: 1
-            Layout.fillWidth: true
         }
 
         CheckBox {

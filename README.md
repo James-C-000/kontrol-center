@@ -2,54 +2,73 @@
 
 # KDE Control Station
 
-A beautiful and modern configuration center for KDE plasma based on the awesome [kde_controlcentre](https://github.com/Prayag2/kde_controlcentre) by [Prayag2](https://github.com/Prayag2/)
+A control center for KDE Plasma 6, styled to blend in with Breeze and your color scheme.
 
-![main-widget](assets/KCS2.0.png)
-
-![layouts](assets/layouts.png)
-![layouts](assets/config.png)
+This is a modified fork of [KDE Control Station](https://github.com/EliverLara/kde-control-station) by [Eliver Lara](https://github.com/EliverLara),
+itself based on [kde_controlcentre](https://github.com/Prayag2/kde_controlcentre) by [Prayag2](https://github.com/Prayag2/).
 </div>
 
-## Key features
+## Changes in this fork
 
-* Ability to create your own layout! reorder, add, delete widgets and customize each widget individually!
-* Ability to change between prebuilt layouts
-* Battery widget that shows relevant information about device battery
-* Button to trigger system session actions
-* Toggle buttons highlighted based on states
-* Dark/Light mode switcher with posibility to also change Global theme (look and feel)
-* Night Light control
-* Widget to execute custom commands
-* Animations while opening/hiding pages
-* Configuration pages for Network, Bluetooth, Battery, Brightness, Volume devices and more
-* Modern media player UI
+* **Breeze styling**: flat cards tinted from your color scheme, Breeze corner radii, accent-colored hover
+  outlines and toggles, system fonts and spacing, native Plasma sliders, and icons from your icon theme
+* **Notification center**: the widget runs Plasma's notification server itself, so notifications are listed
+  in the widget instead of shown as popups. Unread counts appear on the Notifications tile and the panel icon,
+  notifications keep their action buttons until dismissed, and Do Not Disturb, Clear All and notification
+  settings are one click away
+* **VPN tile**: toggles your most recently used VPN (WireGuard included); click the tile to see every network
+* **Network list** rescans for nearby Wi-Fi networks while it's open
+
+See [CHANGELOG.md](CHANGELOG.md) for details.
+
+## Features
+
+* Prebuilt layouts, or build your own: reorder, add, delete and customize each widget
+* Quick toggles for Wi-Fi, Bluetooth, VPN, Night Light and Do Not Disturb (click the icon to toggle,
+  the rest of the tile for details)
+* Pages for networks, Bluetooth devices, battery and power profiles, brightness, audio devices,
+  media playback, notifications and session actions
+* Dark/light color scheme switcher, optionally changing the global theme too
+* Buttons that run custom commands
 
 ## Dependencies
-- KDE Plasma >= 6.0
-- Packages: `plasma-nm`, `kdeplasma-addons`, `plasma-pa`
-- KDE Connect
 
-## Easy Installation
-#### KDE Store (Preferred way)
-1. Right click on the desktop
-2. Click on "Add Widgets"
-3. Click on "Get New Widgets"
-4. Click on "Download New Plasma Widgets"
-5. Search for "KDE Control Station"
-6. Click on "Install" and you're done!
+- KDE Plasma 6
+- Packages: `plasma-nm`, `plasma-pa`, `kdeplasma-addons`, `plasma-workspace`
+- KDE Connect (optional)
 
-## Usage
-1. Right click on the desktop.
-2. Click "Add New Widgets"
-3. Search for "KDE Control Station"
-4. Drag and drop to your desired place.
+## Installation
 
-## Support Me ♥
-If you enjoy what I do, consider supporting me, every little bit means the world! 
-<br>
+Install from a clone of this repository:
+
+```sh
+kpackagetool6 -t Plasma/Applet -i package    # first install
+kpackagetool6 -t Plasma/Applet -u package    # after making changes
+systemctl --user restart plasma-plasmashell
+```
+
+Then right-click your panel or desktop, choose **Add Widgets…** and add **KDE control station**.
+
+Don't install or update the widget through the KDE Store or Discover: it has the same ID as the original,
+so the store version would replace this fork.
+
+### Notifications
+
+Because this widget is the notification server, don't also run Plasma's own Notifications widget (it's part
+of the System Tray); only one of them can receive notifications. If this widget is removed, notifications
+stop working until a System Tray or Notifications widget is added back.
+
+Notifications follow the per-application settings in **System Settings → Notifications**: apps set not to
+show popups are hidden from the list.
+
+## Credits
+
+Original work by [Eliver Lara](https://github.com/EliverLara) and [Prayag2](https://github.com/Prayag2/).
+If you enjoy it, consider supporting Eliver:
 
 <a href="https://ko-fi.com/eliverlara"><img alt="Buy Me A Coffee" src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-%234D798C?style=for-the-badge&logo=ko-fi"/></a>
-<a href="https://www.paypal.com/paypalme/EliverLara/"><img alt="Done using PayPal" src="https://img.shields.io/badge/Donate-Blue?style=for-the-badge&logo=paypal&color=%23002991"/></a>
+<a href="https://www.paypal.com/paypalme/EliverLara/"><img alt="Donate using PayPal" src="https://img.shields.io/badge/Donate-Blue?style=for-the-badge&logo=paypal&color=%23002991"/></a>
 
 ## License
+
 [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html)
