@@ -31,6 +31,8 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
 - Settings warnings: binding loops on the custom command icon buttons, an undefined font, and deprecated
   signal handlers on the Color schemes page.
 - The toggle-limit hint and layout-editing hint in the settings are translatable.
+- The small Bluetooth tile shows "On" instead of a cut-off "Not Connected" when nothing is connected.
+- README screenshots and the Quick Actions settings animations show the current design.
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.

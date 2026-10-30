@@ -23,7 +23,14 @@ Lib.CardButton {
 
     heading: isLongButton ? "Bluetooth" : ""
     
-    title: Funcs.getBtDevice().message
+    title: {
+        const status = Funcs.getBtDevice();
+        // "Not Connected" doesn't fit a small tile, so just say the adapter is on
+        if (!isLongButton && status.active && BluezQt.Manager.connectedDevices.length === 0) {
+            return i18n("On");
+        }
+        return status.message;
+    }
     Lib.Icon {
         id: icon
         anchors.fill: parent

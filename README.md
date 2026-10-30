@@ -6,6 +6,9 @@ A control center for KDE Plasma 6, styled to blend in with Breeze and your color
 
 This is a modified fork of [KDE Control Station](https://github.com/EliverLara/kde-control-station) by [Eliver Lara](https://github.com/EliverLara),
 itself based on [kde_controlcentre](https://github.com/Prayag2/kde_controlcentre) by [Prayag2](https://github.com/Prayag2/).
+
+<img src="assets/main.png" alt="The control center" width="380"/>
+<img src="assets/notifications.png" alt="Notification list" width="380"/>
 </div>
 
 ## Changes in this fork
@@ -20,6 +23,11 @@ itself based on [kde_controlcentre](https://github.com/Prayag2/kde_controlcentre
 * **Network list** rescans for nearby Wi-Fi networks while it's open
 
 See [CHANGELOG.md](CHANGELOG.md) for details.
+
+<div align="center">
+<img src="assets/network.png" alt="Network list with Wi-Fi and VPN connections" width="380"/>
+<img src="assets/settings.png" alt="Settings" width="380"/>
+</div>
 
 ## Features
 
