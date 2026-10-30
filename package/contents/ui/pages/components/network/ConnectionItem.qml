@@ -26,7 +26,8 @@ PlasmaExtras.ExpandableListItem {
     property bool passwordIsStatic: (SecurityType === PlasmaNM.Enums.StaticWep || SecurityType == PlasmaNM.Enums.WpaPsk ||
                                      SecurityType === PlasmaNM.Enums.Wpa2Psk || SecurityType == PlasmaNM.Enums.SAE)
     property bool predictableWirelessPassword: !Uuid && Type === PlasmaNM.Enums.Wireless && passwordIsStatic
-    property bool showSpeed: ConnectionState === PlasmaNM.Enums.Activated &&
+    property bool showSpeed: root.expanded && networkPage.visible &&
+                             ConnectionState === PlasmaNM.Enums.Activated &&
                              (Type === PlasmaNM.Enums.Wired ||
                               Type === PlasmaNM.Enums.Wireless ||
                               Type === PlasmaNM.Enums.Gsm ||

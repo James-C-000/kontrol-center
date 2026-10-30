@@ -36,7 +36,7 @@ Lib.CardButton {
         id: executable
         engine: "executable"
         connectedSources: []
-        onNewData: { 
+        onNewData: (sourceName, data) => {
             disconnectSource(sourceName)
         }
         

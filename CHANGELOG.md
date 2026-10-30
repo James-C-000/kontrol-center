@@ -40,6 +40,10 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
 - The network page's Hotspot button follows Plasma 6.8's hotspot state.
 - No more runtime warnings: Plasma 6 representation properties, a Bluetooth model binding loop, a removed
   `PlasmaCore.Units` reference, and anchors inside a layout.
+- Less background work while the popup is closed: network traffic sampling and the media position timer only
+  run while their pages are on screen, and three unused copies of the network connection model are gone.
+- Custom command buttons disconnect finished commands correctly.
+- Signal handlers use explicit parameters instead of deprecated injected ones.
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.

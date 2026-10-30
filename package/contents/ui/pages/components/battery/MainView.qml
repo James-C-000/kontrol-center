@@ -100,7 +100,7 @@ PlasmaComponents3.ScrollView {
                 degradationReason: scrollView.degradationReason
                 profileHolds: scrollView.profileHolds
                 profilesAvailable: scrollView.profiles.length > 0
-                onActivateProfileRequested: scrollView.activateProfileRequested(profile)
+                onActivateProfileRequested: profile => scrollView.activateProfileRequested(profile)
                 onActiveFocusChanged: if (activeFocus) scrollView.positionViewAtItem(this)
             }
 
@@ -139,7 +139,7 @@ PlasmaComponents3.ScrollView {
                 inhibitions: scrollView.inhibitions
                 inhibitsLidAction: scrollView.inhibitsLidAction
                 pluggedIn: scrollView.pluggedIn
-                onInhibitionChangeRequested: scrollView.inhibitionChangeRequested(inhibit)
+                onInhibitionChangeRequested: inhibit => scrollView.inhibitionChangeRequested(inhibit)
             }
         }
     }

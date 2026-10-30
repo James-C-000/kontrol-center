@@ -74,6 +74,16 @@ PlasmaExtras.Representation {
         disablePositionUpdate = false
     }
 
+    // The position timer only runs while visible, so catch up when the page is shown
+    Connections {
+        target: mediaPlayerPage
+        function onVisibleChanged() {
+            if (mediaPlayerPage.visible) {
+                mpris2Model.currentPlayer?.updatePosition();
+            }
+        }
+    }
+
     Keys.onPressed: keyPressed = true
 
     Keys.onReleased: event => {
@@ -455,7 +465,8 @@ PlasmaExtras.Representation {
                     id: seekTimer
                     interval: 1000 / expandedRepresentation.rate
                     repeat: true
-                    running: mediaPlayerPage.isPlaying && !keyPressed && interval > 0 && seekSlider.to >= 1000000
+                    running: root.expanded && mediaPlayerPage.visible && mediaPlayerPage.isPlaying
+                             && !keyPressed && interval > 0 && seekSlider.to >= 1000000
                     onTriggered: {
                         // some players don't continuously update the seek slider position via mpris
                         // add one second; value in microseconds

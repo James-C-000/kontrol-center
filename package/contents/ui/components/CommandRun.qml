@@ -38,8 +38,8 @@ Lib.CardButton {
         engine: "executable"
         connectedSources: []
 
-        onNewData: {
-            disconnectSource(connectedSources)
+        onNewData: (sourceName, data) => {
+            disconnectSource(sourceName)
             if(data["exit code"] == 0){
                 timer.running = false;
                 timer.restart();

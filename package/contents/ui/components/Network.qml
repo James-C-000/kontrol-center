@@ -3,7 +3,6 @@ import QtQuick 2.15
 import org.kde.plasma.networkmanagement as PlasmaNM
 
 Item {
-    property var appletProxyModel: appletProxyModel
     property var networkStatus: networkStatus
     property var activeConnectionIcon: activeConnectionIcon.connectionIcon
     property var enabledConnections: enabledConnections
@@ -19,10 +18,6 @@ Item {
     }
     PlasmaNM.NetworkStatus {
         id: networkStatus
-    }
-    PlasmaNM.AppletProxyModel {
-        id: appletProxyModel
-        sourceModel: PlasmaNM.NetworkModel{}
     }
     PlasmaNM.EnabledConnections {
         id: enabledConnections
