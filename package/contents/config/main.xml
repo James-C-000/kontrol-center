@@ -171,7 +171,7 @@
             <default>null</default>
         </entry>
         <entry name="usePlasmaSliders" type="bool">
-            <default>false</default>
+            <default>true</default>
         </entry>
 
         <!-- Screenshot config -->

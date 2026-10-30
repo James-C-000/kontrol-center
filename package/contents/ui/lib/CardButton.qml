@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.15
 
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
+import org.kde.kirigami as Kirigami
 
 Card {
     id: cardButton
@@ -21,16 +22,16 @@ Card {
         anchors.margins: fullSizeIcon ? 0 : small ? root.smallSpacing : isLongButton ? root.mediumSpacing : root.largeSpacing
         rows: small ? 2 : 2
         columns: small ? 1 : 2
-        columnSpacing: small ? 0 : 10*root.scale
+        columnSpacing: small ? 0 : root.largeSpacing
         rowSpacing: 0
 
         Item {
             id: icon
             Layout.preferredHeight: (parent.small && plasmoid.configuration.layout == 1) ? parent.height/1.8 
                                     : fullSizeIcon ? parent.height - root.largeSpacing
-                                    : parent.small ? parent.height/1.5 
+                                    : parent.small ? Math.min(parent.height/1.9, parent.width - root.largeSpacing)
                                     : isLongButton ? parent.height 
-                                    : parent.height - root.largeSpacing
+                                    : Math.min(parent.height - root.largeSpacing, Kirigami.Units.iconSizes.huge * root.scale * 0.75)
             Layout.preferredWidth: Layout.preferredHeight
             Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
             Layout.rowSpan: 2
@@ -41,7 +42,7 @@ Card {
             Layout.fillHeight: true
             
             font.pixelSize: root.mediumFontSize
-            font.weight: Font.Bold
+            font.weight: Font.DemiBold
             elide: Text.ElideRight
             visible: !parent.small && text
             Layout.rowSpan: (isLongButton && !showTitle) ? 2 : 1
@@ -54,8 +55,9 @@ Card {
             Layout.fillWidth: true
             Layout.margins:  (parent.small || !heading.visible) ? root.smallSpacing : 1
             Layout.rowSpan: heading.visible ? 1 : 2
-            font.pixelSize: (parent.small || heading.visible) ? root.smallFontSize+0.5 : root.mediumFontSize
-            font.weight: (parent.small || !heading.visible) ? Font.Bold : Font.Normal
+            font.pixelSize: heading.visible ? root.smallFontSize : root.mediumFontSize
+            font.weight: heading.visible ? Font.Normal : Font.DemiBold
+            opacity: heading.visible ? 0.7 : 1
             horizontalAlignment: parent.small ? Qt.AlignHCenter : Qt.AlignLeft
             verticalAlignment: !heading.visible ? Qt.AlignVCenter : Qt.AlignTop
             wrapMode: Text.WordWrap

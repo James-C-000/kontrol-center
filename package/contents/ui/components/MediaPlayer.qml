@@ -15,13 +15,13 @@ Lib.Card {
     visible: root.showMediaPlayer
     property bool small: width < (root.fullRepWidth / 4)*3 
     property bool isLongButton: true
-    cornerRadius: roundedWidget ? 32 : 12
     Layout.fillWidth: true
     Layout.fillHeight: true
 
     GridLayout {
         anchors.fill: parent
         anchors.margins: root.largeSpacing
+        columnSpacing: root.largeSpacing
 
         rows: small ? 4 : 1
         columns: small? 1 : 3
@@ -51,23 +51,22 @@ Lib.Card {
                         anchors.centerIn: parent
                         width: audioThumb.adapt ? audioThumb.width : Math.min(audioThumb.width, audioThumb.height)
                         height: audioThumb.adapt ? audioThumb.height : width
-                        radius: 12//Math.min(width, height)
+                        radius: root.controlRadius * 1.5
                     }
                 }
             }
         }
         ColumnLayout {
             id: mediaNameWrapper
-           // Layout.margins: root.smallSpacing
-            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignVCenter
             spacing: 0
 
             PlasmaComponents.Label {
                 id: audioTitle
                 Layout.fillWidth: true
-                font.capitalization: Font.Capitalize
-                font.weight: Font.Bold
-                font.pixelSize: root.largeFontSize
+                font.weight: Font.DemiBold
+                font.pixelSize: root.mediumFontSize
                 enabled: mediaPlayerPage.track || (mediaPlayerPage.playbackStatus > Mpris.PlaybackStatus.Stopped) ? true : false
                 elide: Text.ElideRight
                 text: mediaPlayerPage.track ? mediaPlayerPage.track : (mediaPlayerPage.playbackStatus > Mpris.PlaybackStatus.Stopped) ? i18n("No title") : i18n("No media playing")
@@ -75,7 +74,9 @@ Lib.Card {
             PlasmaComponents.Label {
                 id: audioArtist
                 Layout.fillWidth: true
-                font.pixelSize: root.mediumFontSize
+                font.pixelSize: root.smallFontSize
+                opacity: 0.7
+                visible: text.length > 0
                 text: mediaPlayerPage.artist
                 elide: Text.ElideRight
             }
@@ -83,12 +84,13 @@ Lib.Card {
         RowLayout {
             id: audioControls
             Layout.alignment: small ? Qt.AlignHCenter : Qt.AlignRight
-            Layout.fillWidth: true
+            Layout.fillWidth: false
+            spacing: 0
 
             PlasmaComponents.ToolButton {
                 id: previousButton
-                Layout.preferredHeight: mediaNameWrapper.implicitHeight
-                Layout.preferredWidth: height
+                icon.width: Kirigami.Units.iconSizes.smallMedium * root.scale
+                icon.height: Kirigami.Units.iconSizes.smallMedium * root.scale
                 icon.name: "media-skip-backward"
                 enabled: mediaPlayerPage.canGoPrevious
                 onClicked: {
@@ -100,8 +102,8 @@ Lib.Card {
             PlasmaComponents.ToolButton { // Pause/Play
                 id: playPauseButton
 
-                Layout.preferredHeight: mediaNameWrapper.implicitHeight
-                Layout.preferredWidth: height
+                icon.width: Kirigami.Units.iconSizes.smallMedium * root.scale
+                icon.height: Kirigami.Units.iconSizes.smallMedium * root.scale
 
                 Layout.alignment: Qt.AlignVCenter
                 enabled: mediaPlayerPage.isPlaying ? mediaPlayerPage.canPause : mediaPlayerPage.canPlay
@@ -113,8 +115,8 @@ Lib.Card {
 
             PlasmaComponents.ToolButton {
                 id: nextButton
-                Layout.preferredHeight: mediaNameWrapper.implicitHeight
-                Layout.preferredWidth: height
+                icon.width: Kirigami.Units.iconSizes.smallMedium * root.scale
+                icon.height: Kirigami.Units.iconSizes.smallMedium * root.scale
                 icon.name: "media-skip-forward"
                 enabled: mediaPlayerPage.canGoNext
                 onClicked: {

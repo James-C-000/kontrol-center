@@ -6,6 +6,7 @@ import "js/colorType.js" as ColorType
 import org.kde.kirigami as Kirigami
 import org.kde.kitemmodels as KItemModels
 import org.kde.plasma.plasma5support as Plasma5Support
+import org.kde.notificationmanager as NotificationManager
 
 PlasmoidItem {
     id: root
@@ -35,18 +36,27 @@ PlasmoidItem {
     property int fullRepHeight: 380 * scale
     property int sectionHeight: 180 * scale
 
-    property int largeSpacing: 12 * scale
-    property int mediumSpacing: 8 * scale
-    property int smallSpacing: 6 * scale
+    property int largeSpacing: Kirigami.Units.largeSpacing * scale
+    property int mediumSpacing: Kirigami.Units.mediumSpacing * scale
+    property int smallSpacing: Kirigami.Units.smallSpacing * scale
 
     property int buttonMargin: 4 * scale
     property int buttonHeight: 48 * scale
 
-    property int largeFontSize: 15 * scale
-    property int mediumFontSize: 13 * scale
-    property int smallFontSize: 11 * scale
+    // Font sizes follow the system font, so the widget matches the rest of Plasma
+    readonly property real defaultFontPixelSize: Kirigami.Theme.defaultFont.pixelSize > 0
+        ? Kirigami.Theme.defaultFont.pixelSize : Kirigami.Theme.defaultFont.pointSize * 4 / 3
+    readonly property real smallFontPixelSize: Kirigami.Theme.smallFont.pixelSize > 0
+        ? Kirigami.Theme.smallFont.pixelSize : Kirigami.Theme.smallFont.pointSize * 4 / 3
+    property int largeFontSize: Math.round(defaultFontPixelSize * 1.15 * scale)
+    property int mediumFontSize: Math.round(defaultFontPixelSize * scale)
+    property int smallFontSize: Math.round(smallFontPixelSize * scale)
 
     property int itemSpacing: 8
+
+    // Shape shared by every card, button and slider
+    readonly property int cardRadius: Kirigami.Units.cornerRadius * 2
+    readonly property int controlRadius: Kirigami.Units.cornerRadius
 
     // COlors variables
     property color themeBgColor: Kirigami.Theme.backgroundColor
@@ -54,6 +64,16 @@ PlasmoidItem {
     property bool isDarkTheme: ColorType.isDark(themeBgColor)
     property color disabledBgColor: isDarkTheme ? Qt.rgba(255, 255, 255, 0.15) : Qt.rgba(0, 0, 0, 0.15)
     property color redColor: Kirigami.Theme.negativeTextColor
+
+    // Card surfaces are a light tint of the text color over the popup background,
+    // the same way Breeze draws grouped frames
+    property color cardColor: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b,
+                                      isDarkTheme ? 0.055 : 0.04)
+    property color cardHoverColor: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b,
+                                           isDarkTheme ? 0.09 : 0.07)
+    property color cardBorderColor: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b,
+                                            isDarkTheme ? 0.07 : 0.1)
+    property color wellColor: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.1)
     
     // Main Icon
      Plasmoid.icon: Plasmoid.configuration.useCustomButtonImage ? Plasmoid.configuration.customButtonImage : Plasmoid.configuration.icon
@@ -122,7 +142,7 @@ PlasmoidItem {
         id: executable
         engine: "executable"
         connectedSources: ["plasmashell -v"]
-        onNewData: {
+        onNewData: (sourceName, data) => {
             if(data["exit code"] == 0){
                 plasmaVersion = data.stdout.split(" ")[1].split(".")[1];
             }
@@ -130,6 +150,94 @@ PlasmoidItem {
         }
     }
     
+    // NOTIFICATIONS
+    // Creating a notifications model registers Plasma's notification server inside plasmashell,
+    // so this widget receives every notification and lists them without showing any popups.
+    property alias notificationSettings: notificationSettings
+    property alias notificationModel: notificationModel
+    // Notifications that arrived since the notification list was last viewed. Plasma's own unread
+    // count only covers popups that timed out unseen, which never happens without popups.
+    property int unreadNotifications: 0
+    property date notificationsSeenAt: new Date(0)
+
+    function countUnreadNotifications() {
+        let unread = 0;
+        for (let i = 0; i < notificationModel.count; ++i) {
+            const idx = notificationModel.index(i, 0);
+            const updated = notificationModel.data(idx, NotificationManager.Notifications.UpdatedRole);
+            const time = updated && !isNaN(updated.getTime()) ? updated
+                       : notificationModel.data(idx, NotificationManager.Notifications.CreatedRole);
+            if (time && time > notificationsSeenAt) {
+                ++unread;
+            }
+        }
+        unreadNotifications = unread;
+    }
+
+    function markNotificationsSeen() {
+        notificationsSeenAt = new Date();
+        notificationModel.lastRead = notificationsSeenAt;
+        countUnreadNotifications();
+    }
+
+    Connections {
+        target: notificationModel
+        function onCountChanged() { Qt.callLater(root.countUnreadNotifications); }
+        function onDataChanged() { Qt.callLater(root.countUnreadNotifications); }
+    }
+
+    NotificationManager.Settings {
+        id: notificationSettings
+    }
+
+    NotificationManager.Notifications {
+        id: notificationModel
+        showNotifications: true
+        showJobs: false
+        showExpired: true
+        showDismissed: true
+        showAddedDuringInhibition: true
+        groupMode: NotificationManager.Notifications.GroupDisabled
+        sortMode: NotificationManager.Notifications.SortByDate
+        sortOrder: Qt.DescendingOrder
+        urgencies: NotificationManager.Notifications.CriticalUrgency
+                   | NotificationManager.Notifications.NormalUrgency
+                   | (notificationSettings.lowPriorityHistory ? NotificationManager.Notifications.LowUrgency : 0)
+        // This list stands in for popups, so it follows the per-app "Show popups" setting
+        blacklistedDesktopEntries: notificationSettings.popupBlacklistedApplications
+        blacklistedNotifyRcNames: notificationSettings.popupBlacklistedServices
+    }
+
+    // Stand-in for the popup lifecycle. With no popups this list is where notifications get acted on,
+    // so they stay live (actions included) until dismissed. Only an app-requested timeout expires one,
+    // which keeps it listed without actions, and transient ones (e.g. OSD-style messages) are closed.
+    NotificationManager.Notifications {
+        id: pendingNotifications
+        showNotifications: true
+        showJobs: false
+        showExpired: false
+        showDismissed: false
+        groupMode: NotificationManager.Notifications.GroupDisabled
+    }
+
+    Instantiator {
+        model: pendingNotifications
+        delegate: Timer {
+            required property int index
+            required property var model
+            interval: model.timeout > 0 ? model.timeout : notificationSettings.popupTimeout
+            running: !model.resident && (model.timeout > 0 || model.transient)
+            onTriggered: {
+                const idx = pendingNotifications.index(index, 0);
+                if (model.transient) {
+                    pendingNotifications.close(idx);
+                } else {
+                    pendingNotifications.expire(idx);
+                }
+            }
+        }
+    }
+
     switchHeight: fullRepWidth
     switchWidth: fullRepWidth
     preferredRepresentation: inPanel ? Plasmoid.compactRepresentation : Plasmoid.fullRepresentation

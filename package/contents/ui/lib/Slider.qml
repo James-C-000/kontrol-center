@@ -7,6 +7,8 @@ import org.kde.kirigami as Kirigami
 
 Card {
     id: sliderComp
+    // Only the arrow button opens the details page, so the card itself isn't a click target
+    interactive: false
     signal moved
     signal actionButtonClicked
 
@@ -65,9 +67,8 @@ Card {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignLeft
-                font.pixelSize: root.largeFontSize
-                font.weight: Font.Bold
-                font.capitalization: Font.Capitalize
+                font.pixelSize: root.mediumFontSize
+                font.weight: Font.DemiBold
                 elide: Text.ElideRight
             }
 
@@ -77,9 +78,9 @@ Card {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignRight
-                font.pixelSize: root.largeFontSize
-                font.weight: Font.Bold
-                font.capitalization: Font.Capitalize
+                font.pixelSize: root.mediumFontSize
+                font.features: { "tnum": 1 }
+                opacity: 0.7
                 horizontalAlignment: Text.AlignRight
             }
 
@@ -94,15 +95,20 @@ Card {
                 id: icon
                 source: sliderComp.source
                 visible: !sliderComp.useIconButton
-                Layout.preferredHeight: root.largeFontSize*2
+                Layout.preferredHeight: Kirigami.Units.iconSizes.smallMedium * root.scale
                 Layout.preferredWidth: Layout.preferredHeight
                 Layout.margins: 0
+                Layout.rightMargin: root.smallSpacing
             }
             
             PlasmaComponents.ToolButton {
                 id: iconButton
                 visible: sliderComp.useIconButton
                 icon.name: sliderComp.source
+                display: AbstractButton.IconOnly
+                text: i18n("Mute")
+                icon.width: Kirigami.Units.iconSizes.smallMedium * root.scale
+                icon.height: Kirigami.Units.iconSizes.smallMedium * root.scale
                 Layout.preferredHeight: root.largeFontSize*2
                 Layout.preferredWidth: Layout.preferredHeight
                 onClicked: sliderComp.actionButtonClicked()
@@ -133,12 +139,12 @@ Card {
                         x: slider.leftPadding
                         y: slider.topPadding + slider.availableHeight / 2 - height / 2
                         implicitWidth: 200
-                        implicitHeight: thinSlider ? 7 : mediumSizeSlider ? 11 : 22
+                        implicitHeight: thinSlider ? 6 : mediumSizeSlider ? 10 : 16
                         width: slider.availableWidth
                         height: parent.height
                         radius: height / 2
-                        color: root.disabledBgColor
-                        border.color: root.isDarkTheme ? root.disabledBgColor : Qt.rgba(0, 0, 0, 0.27)
+                        color: root.wellColor
+                        border.width: 0
 
                         Rectangle {
                             id: levelIndicator
@@ -162,8 +168,9 @@ Card {
                                         (mediumSizeSlider&&(slider.hovered || slider.pressed)) ? levelIndicator.height*2.5 :
                                         levelIndicator.height
                         radius: mediumSizeSlider ? 10 : height / 2
-                        color: mediumSizeSlider && slider.pressed ? "transparent" : slider.pressed ? "#f0f0f0" : "#f6f6f6"
-                        border.color: "#bdbebf"
+                        color: mediumSizeSlider && slider.pressed ? "transparent" : Kirigami.Theme.highlightedTextColor
+                        border.color: highlightColor
+                        border.width: 2
                         Behavior on implicitWidth {
                             NumberAnimation { duration: 200 }
                         }
@@ -217,7 +224,11 @@ Card {
             PlasmaComponents.ToolButton {
                 id: openVolumePageButton
                 visible: sliderComp.canTogglePage
-                icon.name: "arrow-right"
+                icon.name: "go-next-symbolic"
+                display: AbstractButton.IconOnly
+                text: i18n("Show details")
+                icon.width: Kirigami.Units.iconSizes.small * root.scale
+                icon.height: Kirigami.Units.iconSizes.small * root.scale
                 Layout.preferredHeight: root.largeFontSize*2
                 Layout.preferredWidth: Layout.preferredHeight
                 onClicked: sliderComp.clicked()

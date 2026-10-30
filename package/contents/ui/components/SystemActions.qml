@@ -20,23 +20,17 @@ Lib.Card {
     visible: root.showSessionActions
  
     PlasmaComponents.ToolTip {
+        parent: sysActions
+        visible: sysActions.hovered
         text: i18n("Power Off")
     }
 
     Kirigami.Icon {
         id: powerImage
-        width: 23
+        width: Kirigami.Units.iconSizes.smallMedium * root.scale
         height: width
         anchors.centerIn: parent
-        source: Qt.resolvedUrl("../icons/feather/pwr.svg")
-        isMask: true
-        color: Kirigami.Theme.textColor
-    }
-
-    PlasmaComponents.ToolTip {
-        parent: sysActions
-        visible: hovered
-        text: i18n("Power Off")
+        source: "system-shutdown-symbolic"
     }
 
     onClicked: {

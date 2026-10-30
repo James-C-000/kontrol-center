@@ -1,7 +1,6 @@
 import QtQuick 2.15
 import QtQml 2.15
 import QtQuick.Layouts 1.15
-import Qt5Compat.GraphicalEffects
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
@@ -10,26 +9,26 @@ import org.kde.kirigami as Kirigami
 Rectangle {
     id: rectangle
     color: "transparent"
-    border.width: 1
+    border.width: root.editingLayout ? 1 : 0
     border.color: root.editingLayout ? root.disabledBgColor : "transparent"
 
     /******
-     We need to gain space to display the shadow so we reduce top and bottom margins to avoid cut elements
-     in small widgets such as UserAvatar 
+     Small widgets such as UserAvatar use reduced top and bottom margins so their content isn't cut
     *******/
     property bool smallTopMargins: false
     property bool smallBottomMargins: false
     property bool smallLeftMargins: false
     property bool smallRightMargins: false
     /******
-     This is used to manage widget background color so we can change the color depending on widget status(Command Run) 
+     This is used to manage widget background color so we can change the color depending on widget status(Command Run)
     *******/
     property alias customBgColor: cardBg.color
 
 
     property bool flat: false
 
-    property bool shadow: flat ? false : true
+    // Kept for compatibility with layouts that set it; cards are drawn flat in the Breeze style
+    property bool shadow: false
 
     property bool filled:  flat ? false : true
 
@@ -41,21 +40,27 @@ Rectangle {
 
     property bool roundedWidget: false
 
-    property int cornerRadius: roundedWidget ? 50 : 12
+    property int cornerRadius: roundedWidget ? height / 2 : root.cardRadius
 
-    property var margins: shadowContainer.margins
+    // Gap between the visible card and its layout cell, which spaces neighbouring cards apart
+    readonly property int gap: Math.round(root.smallSpacing * 0.75)
+    property var margins: gap
     default property alias content: dataContainer.data
-    radius: 12
+    radius: cornerRadius
 
     property bool hovered: false
     property bool showContentOverflowIndicator: false
+    // Cards that respond to clicks get a hover highlight
+    property bool interactive: true
 
     signal clicked
-    
+
     MouseArea {
-        anchors.fill: contentOverflowIndicator
+        id: cardMouseArea
+        anchors.fill: cardBg
         enabled: !root.editingLayout
         hoverEnabled: enabled
+        cursorShape: rectangle.interactive ? Qt.PointingHandCursor : Qt.ArrowCursor
 
         onEntered: rectangle.hovered = true;
         onExited: rectangle.hovered = false;
@@ -63,54 +68,23 @@ Rectangle {
         onClicked: rectangle.clicked()
     }
 
-    Item {
-        id: shadowContainer
-        visible: shadow
-        
-        anchors.fill: parent
-        anchors.margins: 0
-        layer.enabled: true
-
-        opacity: 0.1 // This controls the opcity of the shadow
-        clip: true
-
-        /*
-        * This is the real widget where the the shadow is drawn around, we applied some margins
-        * to separate it from it's parent(container) so the shadow could be displayed
-        */
-        Rectangle {
-            id: shadowWidget
-            anchors.fill: parent
-            anchors.margins: 6
-            color: root.themeBgColor
-            radius: cornerRadius
-        }
-        DropShadow {
-            anchors.fill: shadowWidget
-            source: shadowWidget
-            transparentBorder: true
-            horizontalOffset: 0
-            verticalOffset: 2
-            radius: 12
-            samples: 25
-            color: "black"
-        }
-    }
-
     Rectangle {
-        id: cardBg; 
-        color: !filled ? "transparent" :
-                root.enableTransparency ? 
-                Qt.rgba(root.themeBgColor.r, root.themeBgColor.g, root.themeBgColor.b, root.transparencyLevel/100)
-                : root.themeBgColor
+        id: cardBg
+        anchors.fill: parent
+        anchors.margins: rectangle.gap
+        color: !filled ? "transparent"
+               : (rectangle.hovered && rectangle.interactive) ? root.cardHoverColor
+               : root.cardColor
 
-        border.color: glassEffect ? Qt.rgba(255, 255, 255, 0.18): root.disabledBgColor
+        border.color: (rectangle.hovered && rectangle.interactive && filled)
+                      ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.6)
+                      : root.cardBorderColor
         border.width: root.showBorders && bordr ? 1 : 0
-        anchors.centerIn: shadowContainer
-        width: shadowWidget.width
-        height: shadowWidget.height
         radius: cornerRadius
         z: -1
+
+        Behavior on color { ColorAnimation { duration: Kirigami.Units.shortDuration } }
+        Behavior on border.color { ColorAnimation { duration: Kirigami.Units.shortDuration } }
     }
 
     Item {
@@ -122,31 +96,17 @@ Rectangle {
         anchors.rightMargin: (noMargins || smallRightMargins) ? -1 : 5
     }
 
-    Rectangle {
+    Kirigami.Icon {
         id: contentOverflowIndicator
-        width: cardBg.width
-        height: cardBg.height - 2
-        color: "transparent"
-        radius: cornerRadius
         visible: showContentOverflowIndicator
-        opacity: rectangle.hovered ? 1 : 0
-        
+        source: "go-next-symbolic"
+        width: Kirigami.Units.iconSizes.small
+        height: width
+        opacity: rectangle.hovered ? 0.8 : 0
         anchors.right: cardBg.right
-        anchors.rightMargin: 1
+        anchors.rightMargin: root.mediumSpacing
         anchors.verticalCenter: cardBg.verticalCenter
 
-        Kirigami.Icon {
-            source: "arrow-right"
-            width: 15
-            height: width
-            scale: contentOverflowIndicator.opacity
-
-            anchors.right: parent.right
-            anchors.rightMargin: 5
-            anchors.verticalCenter: parent.verticalCenter
-
-        }
-
-        Behavior on opacity { PropertyAnimation {} }
+        Behavior on opacity { NumberAnimation { duration: Kirigami.Units.shortDuration } }
     }
 }

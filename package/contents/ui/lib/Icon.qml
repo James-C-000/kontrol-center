@@ -1,13 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
-//import QtGraphicalEffects 1.15
 import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
-import Qt5Compat.GraphicalEffects
 
 
 Item
 {
+    id: iconItem
     property color sourceColor
     property alias source: icon.source
     property alias selected: icon.selected
@@ -22,17 +21,23 @@ Item
 
     Rectangle {
         id: rect
-        radius: width/2
-        color: icon.selected ? highlightColor : sourceColor.valid ? sourceColor : root.disabledBgColor
-        anchors.fill: parent
-        
+        // Rounded square well, centered in whatever space the layout gives us
+        width: Math.min(parent.width, parent.height)
+        height: width
+        anchors.centerIn: parent
+        radius: root.cardRadius
+        color: {
+            const base = icon.selected ? highlightColor : sourceColor.valid ? sourceColor : root.wellColor;
+            return mouseArea.containsMouse ? Qt.lighter(base, root.isDarkTheme ? 1.25 : 1.08) : base;
+        }
+
+        Behavior on color { ColorAnimation { duration: Kirigami.Units.shortDuration } }
 
         Kirigami.Icon {
             id: icon
-            visible: true
-            anchors.fill: parent
-            anchors.margins: fullSizeIcon ? root.largeSpacing : root.smallSpacing
             anchors.centerIn: parent
+            width: Math.round(parent.width * (fullSizeIcon ? 0.5 : 0.64))
+            height: width
             selected: false
             isMask: customIcon
             color: selected ? iconColor : Kirigami.Theme.textColor
@@ -40,10 +45,12 @@ Item
     }
 
     MouseArea {
+        id: mouseArea
         enabled: !root.editingLayout && enableQuickAction
         hoverEnabled: true
-        anchors.fill: parent
-        
+        cursorShape: Qt.PointingHandCursor
+        anchors.fill: rect
+
         onClicked: quickActionTriggered()
     }
 }

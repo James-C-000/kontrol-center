@@ -20,12 +20,14 @@ Lib.CardButton {
 
     visible: root.showNightLight
     title: i18n("Night Light")
-    shouldStickIconSize: true
 
     property var control: nightLightPage.control
 
-    Kirigami.Icon {
+    Lib.Icon {
         anchors.fill: parent
+        selected: control.enabled && !control.inhibited
+        enableQuickAction: root.enableQuickActions && control.enabled && control.togglable
+        onQuickActionTriggered: NightLightInhibitor.toggleInhibition()
         source: {
             if (!control.enabled) {
                 return "redshift-status-on"; // not configured: show generic night light icon rather "manually turned off" icon

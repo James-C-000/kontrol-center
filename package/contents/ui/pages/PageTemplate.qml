@@ -8,6 +8,7 @@ import org.kde.plasma.networkmanagement as PlasmaNM
 import org.kde.ksvg as KSvg
 import "../lib" as Lib
 import org.kde.plasma.extras as PlasmaExtras
+import org.kde.kirigami as Kirigami
 
 
 Lib.Card {
@@ -64,20 +65,23 @@ Lib.Card {
             Layout.fillWidth: true
             visible: !customHeader
             z: page.z+1
-            ToolButton {
+            PlasmaComponents.ToolButton {
                 Layout.preferredHeight: root.largeFontSize * 2.5
-                icon.name: "arrow-left"
-                MouseArea {
-                    
-                    anchors.fill: parent
-                    
-                    onClicked: fullRep.togglePage();
-                }
+                Layout.preferredWidth: Layout.preferredHeight
+                icon.name: mirrored ? "go-next-symbolic" : "go-previous-symbolic"
+                display: AbstractButton.IconOnly
+                icon.width: Kirigami.Units.iconSizes.smallMedium * root.scale
+                icon.height: Kirigami.Units.iconSizes.smallMedium * root.scale
+                text: i18n("Back")
+                onClicked: fullRep.togglePage();
             }
 
-            PlasmaComponents.Label {
+            Kirigami.Heading {
+                level: 2
                 text: page.sectionTitle
-                font.pixelSize: root.largeFontSize * 1.2
+                elide: Text.ElideRight
+                font.pixelSize: root.largeFontSize * 1.1
+                font.weight: Font.DemiBold
             }
 
             Item {

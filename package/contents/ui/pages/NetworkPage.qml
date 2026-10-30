@@ -105,6 +105,15 @@ PageTemplate {
         }
     }
 
+    // Keep the list of nearby networks fresh while the page is open, like Plasma's network widget
+    Timer {
+        interval: 10200
+        repeat: true
+        running: networkPage.visible && root.expanded && !PlasmaNM.Configuration.airplaneModeEnabled
+        triggeredOnStart: true
+        onTriggered: networkPage.handler.requestScan()
+    }
+
     Component.onCompleted: {
         networkPage.connectionModel = networkModelComponent.createObject(networkPage);
     }

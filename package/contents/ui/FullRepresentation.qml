@@ -11,7 +11,7 @@ import org.kde.plasma.components as PlasmaComponents
 import "lib" as Lib
 import "components" as Components
 import "pages" as Pages
-import "js/funcs.js" as Funcs 
+import "js/funcs.js" as Funcs
 
 
 Item {
@@ -84,6 +84,11 @@ Item {
         id: networkPage
     }
 
+    // Notification history Page
+    Pages.NotificationsPage {
+        id: notificationsPage
+    }
+
     Loader {
         id: wrapper
         source: fullRep.layouts[plasmoid.configuration.layout]
@@ -147,4 +152,5 @@ Item {
             togglePage();
         }
     }
+
 }

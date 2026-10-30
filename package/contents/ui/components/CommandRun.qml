@@ -15,7 +15,6 @@ Lib.CardButton {
     Layout.fillHeight: true
     property string icon;
     property string command;
-    shouldStickIconSize: true
     
     property color normalBgColor: root.enableTransparency ? 
            Qt.rgba(root.themeBgColor.r, root.themeBgColor.g, root.themeBgColor.b, root.transparencyLevel/100)
@@ -25,7 +24,7 @@ Lib.CardButton {
         executable.connectSource(cmd)
     }
     
-    Kirigami.Icon {
+    Lib.Icon {
         anchors.fill: parent
         source: icon
     }

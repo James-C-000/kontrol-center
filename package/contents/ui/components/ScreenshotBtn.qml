@@ -22,10 +22,8 @@ Lib.CardButton {
     Layout.fillWidth: true
     title: i18n("Screenshot")
     property string command: root.screenshotCommand ?? "spectacle"
-    shouldStickIconSize: true
-    Kirigami.Icon {
+    Lib.Icon {
         anchors.fill: parent
-        anchors.centerIn: parent
         source: "camera-photo-symbolic"
     }
 

@@ -38,8 +38,8 @@ Lib.Card {
             id: batteryIcon
 
             Layout.alignment: isLongButton && showTitle ?  (Qt.AlignRight | Qt.AlignVcenter) : (Qt.AlignHCenter | Qt.AlignVcenter)
-            Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-            Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            Layout.preferredWidth: Kirigami.Units.iconSizes.smallMedium * root.scale
+            Layout.preferredHeight: Kirigami.Units.iconSizes.smallMedium * root.scale
             Layout.columnSpan: (small || isLongButton ) ? 1 : 2
 
             percent: batteryPage.batteryControl.percent
@@ -53,7 +53,8 @@ Lib.Card {
             Layout.alignment: isLongButton ?  (Qt.AlignLeft | Qt.AlignVcenter) : (Qt.AlignHCenter | Qt.AlignVcenter)
             text: i18nc("Placeholder is battery percentage", "%1%", batteryPage.batteryControl.percent)
             font.pixelSize: root.mediumFontSize
-            font.weight:Font.Bold
+            font.weight: Font.DemiBold
+            font.features: { "tnum": 1 }
             Layout.columnSpan: (small || isLongButton ) ? 1 : 2
             visible: showTitle
         }
@@ -63,7 +64,9 @@ Lib.Card {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
         enabled: !root.editingLayout
-        hoverEnabled: false
+        hoverEnabled: true
+        onEntered: battery.hovered = true
+        onExited: battery.hovered = false
         onClicked: {
             var pageHeight =  batteryPage.contentItemHeight + batteryPage.headerHeight;
             fullRep.togglePage(fullRep.defaultInitialWidth, pageHeight, batteryPage);
