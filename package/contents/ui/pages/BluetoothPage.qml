@@ -31,8 +31,8 @@ PageTemplate {
 
     PlasmaBt.DevicesProxyModel {
         id: devicesModel
-     //   hideBlockedDevices: true
-        sourceModel: PlasmaBt.SharedDevicesStateProxyModel
+        // Assigned once: binding to the shared singleton triggers a binding loop on sourceModel
+        Component.onCompleted: sourceModel = PlasmaBt.SharedDevicesStateProxyModel
     }
 
     function setBluetoothEnabled(enable: bool): void {

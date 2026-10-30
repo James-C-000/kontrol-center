@@ -11,6 +11,7 @@ import org.kde.ksvg as KSvg
 import org.kde.plasma.extras as PlasmaExtras
 
 import org.kde.plasma.private.volume
+import org.kde.kitemmodels as KItemModels
 
 import "../lib" as Lib
 import "components/volume" as VolumeComponents
@@ -26,7 +27,7 @@ PageTemplate {
     }
 
     property bool volumeFeedback: config.audioFeedback
-    property bool globalMute: config.globalMute
+    property bool globalMute: config.globalMuteSinks
     property string displayName: i18n("Audio Volume")
     property QtObject draggedStream: null
 
@@ -61,6 +62,42 @@ PageTemplate {
 
     function volumePercent(volume) {
         return Math.round(volume / PulseAudio.NormalVolume * 100.0);
+    }
+
+    // Same behaviour as Plasma's volume widget: mute every output, and on unmute restore only
+    // the outputs that weren't already muted beforehand
+    function sinkKey(idx) {
+        return paSinkModel.data(idx, paSinkModel.KItemModels.KRoleNames.role("Name")) + "."
+             + paSinkModel.data(idx, paSinkModel.KItemModels.KRoleNames.role("ActivePortIndex"));
+    }
+
+    function toggleGlobalMute() {
+        const mutedRole = paSinkModel.KItemModels.KRoleNames.role("Muted");
+        const rowCount = paSinkModel.rowCount();
+        if (!globalMute) {
+            const alreadyMuted = [];
+            for (let i = 0; i < rowCount; ++i) {
+                const idx = paSinkModel.index(i, 0);
+                if (paSinkModel.data(idx, mutedRole)) {
+                    alreadyMuted.push(sinkKey(idx));
+                } else {
+                    paSinkModel.setData(idx, true, mutedRole);
+                }
+            }
+            // If everything was already muted, unmuting should unmute everything
+            config.globalMuteSinksMutedDevices = alreadyMuted.length < rowCount ? alreadyMuted : [];
+            config.globalMuteSinks = true;
+        } else {
+            for (let i = 0; i < rowCount; ++i) {
+                const idx = paSinkModel.index(i, 0);
+                if (config.globalMuteSinksMutedDevices.indexOf(sinkKey(idx)) === -1) {
+                    paSinkModel.setData(idx, false, mutedRole);
+                }
+            }
+            config.globalMuteSinksMutedDevices = [];
+            config.globalMuteSinks = false;
+        }
+        config.save();
     }
 
     function playFeedback(sinkIndex) {
@@ -190,9 +227,7 @@ PageTemplate {
                 visible: true// !(plasmoid.containmentDisplayHints & PlasmaCore.Types.ContainmentDrawsPlasmoidHeading)
 
                 icon.name: "audio-volume-muted"
-                onClicked: {
-                    GlobalService.globalMute()
-                }
+                onClicked: volumePage.toggleGlobalMute()
                 checked: globalMute
 
                 Accessible.name: i18n("Force mute all playback devices")

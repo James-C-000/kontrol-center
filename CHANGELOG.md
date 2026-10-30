@@ -33,6 +33,13 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
 - The toggle-limit hint and layout-editing hint in the settings are translatable.
 - The small Bluetooth tile shows "On" instead of a cut-off "Not Connected" when nothing is connected.
 - README screenshots and the Quick Actions settings animations show the current design.
+- The Volume page's "Force mute all playback devices" button works; it called a service that doesn't exist.
+  Global mute also uses plasma-pa's current settings keys.
+- The Battery page lists apps that are blocking sleep again (Plasma 6.3+ renamed the data), showing each
+  app once, and no longer throws errors on open.
+- The network page's Hotspot button follows Plasma 6.8's hotspot state.
+- No more runtime warnings: Plasma 6 representation properties, a Bluetooth model binding loop, a removed
+  `PlasmaCore.Units` reference, and anchors inside a layout.
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.

@@ -105,7 +105,25 @@ PageTemplate {
         remainingTime: batteryControl.remainingTime
         activeProfile: powerProfilesControl.activeProfile
         activeProfileError: powerProfilesControl.profileError
-        inhibitions: inhibitionControl.inhibitions
+        // Apps currently blocking sleep. Plasma 6.3+ reports requestedInhibitions (lowercase fields,
+        // and the user can disallow one), older versions report inhibitions.
+        inhibitions: {
+            const requested = inhibitionControl.requestedInhibitions ?? inhibitionControl.inhibitions ?? [];
+            const seen = new Set();
+            return Array.from(requested)
+                .filter(inhibition => (inhibition.active ?? true) && (inhibition.allowed ?? true))
+                .map(inhibition => ({
+                    Name: inhibition.appName ?? inhibition.Name,
+                    PrettyName: inhibition.prettyName ?? inhibition.PrettyName,
+                    Icon: inhibition.icon ?? inhibition.Icon,
+                    Reason: inhibition.reason ?? inhibition.Reason,
+                }))
+                // One app blocking both sleep and screen dimming is reported twice; list it once
+                .filter(inhibition => {
+                    const key = inhibition.Name + "\n" + inhibition.Reason;
+                    return !seen.has(key) && seen.add(key);
+                });
+        }
         inhibitsLidAction: inhibitionControl.isLidPresent && !inhibitionControl.triggersLidAction
         profilesInstalled: powerProfilesControl.isPowerProfileDaemonInstalled
         profiles: powerProfilesControl.profiles

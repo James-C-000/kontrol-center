@@ -155,6 +155,7 @@ RowLayout {
 
         visible: handler.hotspotSupported
         checkable: true
+        checked: handler.hotspotActive
 
         text: i18n("Hotspot")
         icon.name: "network-wireless-hotspot"
@@ -163,35 +164,17 @@ RowLayout {
         KeyNavigation.right: searchTextField
 
         onClicked: {
-            if (PlasmaNM.Configuration.hotspotConnectionPath) {
-                checked = false
+            if (handler.hotspotActive) {
                 handler.stopHotspot()
             } else {
-                checked = true
                 handler.createHotspot()
             }
+            // Let the handler's state drive the button rather than the click
+            checked = Qt.binding(() => handler.hotspotActive)
         }
 
         PlasmaComponents3.ToolTip {
-            id: tooltip
-        }
-
-        Connections {
-            target: handler
-            function onHotspotCreated() {
-                hotspotButton.checked = true
-                tooltip.text = i18n("Disable Hotspot")
-            }
-
-            function onHotspotDisabled() {
-                hotspotButton.checked = false
-                tooltip.text = i18n("Create Hotspot")
-            }
-        }
-
-        Component.onCompleted: {
-            checked = PlasmaNM.Configuration.hotspotConnectionPath
-            tooltip.text = PlasmaNM.Configuration.hotspotConnectionPath ? i18n("Disable Hotspot") : i18n("Create Hotspot")
+            text: handler.hotspotActive ? i18n("Disable Hotspot") : i18n("Create Hotspot")
         }
     }
 
