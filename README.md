@@ -1,6 +1,6 @@
 <div align="center">
 
-# KDE Control Station
+# Kontrol Center
 
 A control center for KDE Plasma 6, styled to blend in with Breeze and your color scheme.
 
@@ -55,9 +55,9 @@ kpackagetool6 -t Plasma/Applet -u package    # after making changes
 systemctl --user restart plasma-plasmashell
 ```
 
-Then right-click your panel or desktop, choose **Add Widgets…** and add **KDE control station**.
+Then right-click your panel or desktop, choose **Add Widgets…** and add **Kontrol Center**.
 
-This fork has its own plugin ID (`io.github.james-c-000.kdecontrolstation`), so the original widget from the
+This fork has its own plugin ID (`io.github.james-c-000.kontrolcenter`), so the original widget from the
 KDE Store or Discover installs separately and never replaces it.
 
 ### Notifications

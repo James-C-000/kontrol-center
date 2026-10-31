@@ -1,12 +1,12 @@
-# Translation of io.github.james-c-000.kdecontrolstation in French
+# Translation of io.github.james-c-000.kontrolcenter in French
 # Copyright (C) 2025
-# This file is distributed under the same license as the io.github.james-c-000.kdecontrolstation package.
+# This file is distributed under the same license as the io.github.james-c-000.kontrolcenter package.
 # French Translation, 2025.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: io.github.james-c-000.kdecontrolstation\n"
+"Project-Id-Version: io.github.james-c-000.kontrolcenter\n"
 "Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: 2025-12-24 12:00+0100\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: ../metadata.json
-msgid "KDE control station"
-msgstr "Station de contrôle KDE"
+msgid "Kontrol Center"
+msgstr ""
 
 #: ../metadata.json
 msgid "A modern control station for plasma based on the awesome work of prayag2!"
@@ -122,8 +122,8 @@ msgid "Layout:"
 msgstr "Disposition :"
 
 #: ../contents/ui/config/configAppearance.qml
-msgid "KDE Control Station (Default)"
-msgstr "Station de contrôle KDE (par défaut)"
+msgid "Kontrol Center (Default)"
+msgstr ""
 
 #: ../contents/ui/config/configAppearance.qml
 msgid "Control Center"

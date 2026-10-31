@@ -1,12 +1,12 @@
-# Translation of io.github.james-c-000.kdecontrolstation in LANGUAGE
+# Translation of io.github.james-c-000.kontrolcenter in LANGUAGE
 # Copyright (C) 2026
-# This file is distributed under the same license as the io.github.james-c-000.kdecontrolstation package.
+# This file is distributed under the same license as the io.github.james-c-000.kontrolcenter package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: io.github.james-c-000.kdecontrolstation\n"
+"Project-Id-Version: io.github.james-c-000.kontrolcenter\n"
 "Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: ../metadata.json
-msgid "KDE control station"
+msgid "Kontrol Center"
 msgstr ""
 
 #: ../metadata.json
@@ -122,7 +122,7 @@ msgid "Layout:"
 msgstr ""
 
 #: ../contents/ui/config/configAppearance.qml
-msgid "KDE Control Station (Default)"
+msgid "Kontrol Center (Default)"
 msgstr ""
 
 #: ../contents/ui/config/configAppearance.qml

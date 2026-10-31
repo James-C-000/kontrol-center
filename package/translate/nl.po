@@ -1,12 +1,12 @@
-# Translation of io.github.james-c-000.kdecontrolstation in nl
+# Translation of io.github.james-c-000.kontrolcenter in nl
 # Copyright (C) 2025
-# This file is distributed under the same license as the io.github.james-c-000.kdecontrolstation package.
+# This file is distributed under the same license as the io.github.james-c-000.kontrolcenter package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: io.github.james-c-000.kdecontrolstation\n"
+"Project-Id-Version: io.github.james-c-000.kontrolcenter\n"
 "Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: 2025-09-06 11:46+0200\n"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Poedit 3.6\n"
 
 #: ../metadata.json
-msgid "KDE control station"
-msgstr "KDE-bedieningspaneel"
+msgid "Kontrol Center"
+msgstr ""
 
 #: ../metadata.json
 msgid ""
@@ -132,8 +132,8 @@ msgid "Layout:"
 msgstr "Indeling:"
 
 #: ../contents/ui/config/configAppearance.qml
-msgid "KDE Control Station (Default)"
-msgstr "KDE-bedieningspaneel (standaard)"
+msgid "Kontrol Center (Default)"
+msgstr ""
 
 #: ../contents/ui/config/configAppearance.qml
 msgid "Control Center"

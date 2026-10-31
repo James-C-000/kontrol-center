@@ -232,7 +232,7 @@ KCM.SimpleKCM {
             id: layout
             Kirigami.FormData.label: i18n("Layout:")
             model: [
-                i18n("KDE Control Station (Default)"),
+                i18n("Kontrol Center (Default)"),
                 i18n("Control Center"),
                 i18n("Flat"),
                 i18n("Tahoe"),

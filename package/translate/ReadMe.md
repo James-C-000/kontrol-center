@@ -5,17 +5,17 @@
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
 | Template |     230 |       |
-| de       | 227/230 |   98% |
+| de       | 225/230 |   97% |
 | es       |  36/230 |   15% |
-| fr       | 156/230 |   67% |
-| ko       | 199/230 |   86% |
-| nl       | 226/230 |   98% |
-| pl       | 226/230 |   98% |
-| pt_BR    | 218/230 |   94% |
-| ru       | 228/230 |   99% |
-| uk       | 224/230 |   97% |
-| zh_Hans  | 230/230 |  100% |
-| zh_Hant  | 230/230 |  100% |
+| fr       | 154/230 |   66% |
+| ko       | 197/230 |   85% |
+| nl       | 224/230 |   97% |
+| pl       | 224/230 |   97% |
+| pt_BR    | 216/230 |   93% |
+| ru       | 226/230 |   98% |
+| uk       | 222/230 |   96% |
+| zh_Hans  | 228/230 |   99% |
+| zh_Hant  | 228/230 |   99% |
 
 
 ## New Translations
@@ -47,7 +47,7 @@ Since KDE Frameworks v5.37, translations can be bundled with the zipped `*.plasm
 The binary `.mo` translation files are placed in `package/contents/locale/` so you may want to add `*.mo` to your `.gitignore`.
 
 ```
-package/contents/locale/fr/LC_MESSAGES/plasma_applet_io.github.james-c-000.kdecontrolstation.mo
+package/contents/locale/fr/LC_MESSAGES/plasma_applet_io.github.james-c-000.kontrolcenter.mo
 ```
 
 ## Links
