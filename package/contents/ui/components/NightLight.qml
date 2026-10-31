@@ -18,7 +18,8 @@ Lib.CardButton {
     Layout.fillHeight: true
     Layout.fillWidth: true
 
-    visible: root.showNightLight
+    readonly property bool shown: root.showNightLight
+    visible: shown
     title: i18n("Night Light")
 
     property var control: nightLightPage.control

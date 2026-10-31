@@ -19,7 +19,8 @@ Lib.CardButton {
     readonly property var busyVpn: vpns.find(vpn => vpn.state === PlasmaNM.Enums.Activating
                                                     || vpn.state === PlasmaNM.Enums.Deactivating) ?? null
 
-    visible: vpns.length > 0
+    readonly property bool shown: vpns.length > 0
+    visible: shown
     Layout.fillWidth: true
     Layout.fillHeight: true
     showContentOverflowIndicator: isLongButton

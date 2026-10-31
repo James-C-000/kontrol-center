@@ -14,7 +14,8 @@ import "../js/colorType.js" as ColorType
 Lib.CardButton {
     id: colorSchemeSwitcher
 
-    visible: root.showColorSwitcher
+    readonly property bool shown: root.showColorSwitcher
+    visible: shown
     Layout.fillHeight: true
     Layout.fillWidth: true
     title: i18n("Dark Theme")

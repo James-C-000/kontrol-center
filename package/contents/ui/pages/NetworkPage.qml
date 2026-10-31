@@ -114,7 +114,23 @@ PageTemplate {
         onTriggered: networkPage.handler.requestScan()
     }
 
-    Component.onCompleted: {
-        networkPage.connectionModel = networkModelComponent.createObject(networkPage);
+    // Like Plasma's network widget, build the connection list each time the popup opens and drop it when it
+    // closes. A model kept for the whole session missed networks that came into range later.
+    function updateConnectionModel() {
+        if (root.expanded && !networkPage.connectionModel) {
+            networkPage.connectionModel = networkModelComponent.createObject(networkPage);
+        } else if (!root.expanded && networkPage.connectionModel) {
+            networkPage.connectionModel.destroy();
+            networkPage.connectionModel = null;
+        }
     }
+
+    Connections {
+        target: root
+        function onExpandedChanged() {
+            networkPage.updateConnectionModel();
+        }
+    }
+
+    Component.onCompleted: updateConnectionModel()
 }

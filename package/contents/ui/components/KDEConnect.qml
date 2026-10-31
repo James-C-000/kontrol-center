@@ -10,7 +10,8 @@ import "../lib" as Lib
 import "../js/funcs.js" as Funcs
 
 Lib.CardButton {
-    visible: root.showKDEConnect
+    readonly property bool shown: root.showKDEConnect
+    visible: shown
     Layout.fillWidth: true
     Layout.fillHeight: true
     title: i18n("KDE Connect")

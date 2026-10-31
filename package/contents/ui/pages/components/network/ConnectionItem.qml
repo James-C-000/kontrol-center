@@ -310,7 +310,7 @@ PlasmaExtras.ExpandableListItem {
     }
 
     onShowSpeedChanged: {
-        networkPage.connectionModel.setDeviceStatisticsRefreshRateMs(DevicePath, showSpeed ? 2000 : 0)
+        networkPage.connectionModel?.setDeviceStatisticsRefreshRateMs(DevicePath, showSpeed ? 2000 : 0)
     }
 
     onActivatingChanged: {

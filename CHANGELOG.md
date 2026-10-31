@@ -49,6 +49,11 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
   run while their pages are on screen, and three unused copies of the network connection model are gone.
 - Custom command buttons disconnect finished commands correctly.
 - Signal handlers use explicit parameters instead of deprecated injected ones.
+- The network list shows networks that come into range after Plasma starts: like Plasma's network widget, it
+  builds its list when the popup opens and drops it when it closes.
+- Tahoe layout: icon backgrounds are round to match its round tiles, instead of squares poking past their edges.
+- Custom layout: widgets turned off in the settings no longer leave empty gaps, and tile labels shrink to fit
+  narrow tiles before being cut off.
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.

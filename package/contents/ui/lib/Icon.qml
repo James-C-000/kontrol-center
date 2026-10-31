@@ -19,13 +19,23 @@ Item
     property color highlightColor: root.useSystemColorsOnToggles ? root.themeHighlightColor : root.toggleButtonsColor
     property color iconColor: root.useSystemColorsOnToggles ?  Kirigami.Theme.highlightedTextColor : root.toggleButtonsIconColor
 
+    // Round cards (Tahoe layout) get a round well to match
+    readonly property bool round: {
+        for (let item = parent; item; item = item.parent) {
+            if (item.roundedWidget !== undefined) {
+                return item.roundedWidget;
+            }
+        }
+        return false;
+    }
+
     Rectangle {
         id: rect
         // Rounded square well, centered in whatever space the layout gives us
         width: Math.min(parent.width, parent.height)
         height: width
         anchors.centerIn: parent
-        radius: root.cardRadius
+        radius: iconItem.round ? width / 2 : root.cardRadius
         color: {
             const base = icon.selected ? highlightColor : sourceColor.valid ? sourceColor : root.wellColor;
             return mouseArea.containsMouse ? Qt.lighter(base, root.isDarkTheme ? 1.25 : 1.08) : base;

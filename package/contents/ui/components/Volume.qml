@@ -12,7 +12,8 @@ Item {
     id: volumeControl
     Layout.fillWidth: true
     Layout.fillHeight: true
-    visible: sinkAvailable && root.showVolume
+    readonly property bool shown: sinkAvailable && root.showVolume
+    visible: shown
 
     property bool canTogglePage: true
 

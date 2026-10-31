@@ -56,6 +56,9 @@ Card {
             Layout.margins:  (parent.small || !heading.visible) ? root.smallSpacing : 1
             Layout.rowSpan: heading.visible ? 1 : 2
             font.pixelSize: heading.visible ? root.smallFontSize : root.mediumFontSize
+            // Narrow tiles (e.g. the Custom layout) shrink the label down to the small font before eliding it
+            fontSizeMode: parent.small ? Text.Fit : Text.FixedSize
+            minimumPixelSize: root.smallFontSize
             font.weight: heading.visible ? Font.Normal : Font.DemiBold
             opacity: heading.visible ? 0.7 : 1
             horizontalAlignment: parent.small ? Qt.AlignHCenter : Qt.AlignLeft

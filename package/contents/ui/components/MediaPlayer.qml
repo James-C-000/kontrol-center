@@ -12,7 +12,8 @@ import "../lib" as Lib
 
 Lib.Card {
     id: mediaPlayer
-    visible: root.showMediaPlayer
+    readonly property bool shown: root.showMediaPlayer
+    visible: shown
     property bool small: width < (root.fullRepWidth / 4)*3 
     property bool isLongButton: true
     Layout.fillWidth: true

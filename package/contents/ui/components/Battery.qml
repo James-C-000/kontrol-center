@@ -22,7 +22,8 @@ Lib.Card {
 
     property bool small: height < (root.sectionHeight*1.3) / 3.5
 
-    visible: batteryPage.batteryControl.hasBatteries && root.showBattery
+    readonly property bool shown: batteryPage.batteryControl.hasBatteries && root.showBattery
+    visible: shown
 
     showContentOverflowIndicator: isLongButton
 

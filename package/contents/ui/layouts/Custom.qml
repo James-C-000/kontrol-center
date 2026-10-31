@@ -92,6 +92,9 @@ Item {
 
                 width: model.width ? model.width : mainGrid.cellWidth * model.colSpan
                 height: model.height ? model.height : mainGrid.cellHeight
+                // Widgets turned off in the settings (KDE Connect, color schemes…) leave no gap, except while editing.
+                // Reads the widget's own condition: item.visible would stay false once this Loader is hidden.
+                visible: root.editingLayout || !item || (item.shown ?? true)
 
                 Layout.columnSpan: model.colSpan
 

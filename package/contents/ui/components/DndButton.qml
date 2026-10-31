@@ -9,7 +9,8 @@ import org.kde.kirigami as Kirigami
 // Notifications tile: the icon toggles Do Not Disturb, the rest opens the notification list
 Lib.CardButton {
     id: notificationsBtn
-    visible: root.showDnd
+    readonly property bool shown: root.showDnd
+    visible: shown
     Layout.fillWidth: true
     Layout.fillHeight: true
     showContentOverflowIndicator: isLongButton

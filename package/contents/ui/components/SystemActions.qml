@@ -17,7 +17,8 @@ Lib.Card {
     Layout.fillHeight: true
     Layout.fillWidth: true
 
-    visible: root.showSessionActions
+    readonly property bool shown: root.showSessionActions
+    visible: shown
  
     PlasmaComponents.ToolTip {
         parent: sysActions

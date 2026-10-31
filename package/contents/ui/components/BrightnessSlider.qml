@@ -62,7 +62,8 @@ Item {
         function onRowsRemoved() { update(); }
     }
 
-    visible: sbControl.isBrightnessAvailable && root.showBrightness
+    readonly property bool shown: sbControl.isBrightnessAvailable && root.showBrightness
+    visible: shown
     
     Loader {
         id: sliderLoader

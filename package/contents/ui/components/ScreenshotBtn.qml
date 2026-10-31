@@ -14,7 +14,8 @@ import "../js/colorType.js" as ColorType
 Lib.CardButton {
     id: screenshotBtn
 
-    visible: root.showScreenshot
+    readonly property bool shown: root.showScreenshot
+    visible: shown
 
     property bool mini: false 
 

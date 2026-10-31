@@ -15,7 +15,8 @@ Lib.CardButton {
     Layout.fillWidth: true
     Layout.preferredHeight: root.sectionHeight/3.3
 
-    visible: root.showAvatar
+    readonly property bool shown: root.showAvatar
+    visible: shown
 
     property bool singleLineWidget: false
 
