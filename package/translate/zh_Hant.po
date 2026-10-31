@@ -23,8 +23,8 @@ msgid "Kontrol Center"
 msgstr ""
 
 #: ../metadata.json
-msgid "A modern control station for plasma based on the awesome work of prayag2!"
-msgstr "基於 prayag2 傑作的現代化 Plasma 控制中心"
+msgid "Quick settings, notifications and media controls, styled to blend in with Breeze and your color scheme."
+msgstr ""
 
 #: ../contents/config/config.qml ../contents/ui/layouts/components/ControlCenter/LeftColumn.qml
 msgid "Appearance"

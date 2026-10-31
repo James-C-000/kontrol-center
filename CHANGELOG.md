@@ -16,7 +16,8 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
   Also available in the Custom layout.
 
 ### Changed
-- Renamed to Kontrol Center, including the default layout's name. The name is no longer translated.
+- Renamed to Kontrol Center, including the default layout's name, with a new widget description. Neither is
+  translated yet. Prayag2 is listed as an author.
 - New plugin ID, `io.github.james-c-000.kontrolcenter` (was `KdeControlStation`), so the KDE Store version
   can't overwrite this fork. Widgets already in a panel need their `plugin=` entry in
   `~/.config/plasma-org.kde.plasma.desktop-appletsrc` updated, or need to be added again.
