@@ -72,10 +72,6 @@ show popups are hidden from the list.
 ## Credits
 
 Original work by [Eliver Lara](https://github.com/EliverLara) and [Prayag2](https://github.com/Prayag2/).
-If you enjoy it, consider supporting Eliver:
-
-<a href="https://ko-fi.com/eliverlara"><img alt="Buy Me A Coffee" src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-%234D798C?style=for-the-badge&logo=ko-fi"/></a>
-<a href="https://www.paypal.com/paypalme/EliverLara/"><img alt="Donate using PayPal" src="https://img.shields.io/badge/Donate-Blue?style=for-the-badge&logo=paypal&color=%23002991"/></a>
 
 ## License
 

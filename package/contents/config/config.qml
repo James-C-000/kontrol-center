@@ -23,9 +23,4 @@ ConfigModel {
         icon: "quickopen"
         source: "config/configQuickActions.qml"
     }
-     ConfigCategory {
-        name: i18n("Support")
-        icon: "face-angel"
-        source: "config/configSupport.qml"
-    }
 }

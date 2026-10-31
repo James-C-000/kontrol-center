@@ -47,6 +47,8 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.
+- The Support settings page and the donation links in the README and GitHub funding file. The original
+  authors are credited in the README and metadata.
 - Unused leftovers: the Plasma 5 `CMakeLists.txt`, `brightness.js` and Redshift component, the unused
   `LongButton` component, bundled icons that the theme now provides, and a stray `.gitignore`.
 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: KdeControlStation\n"
-"Report-Msgid-Bugs-To: https://github.com/EliverLara/kde-control-station/tree/plasma6\n"
+"Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -37,10 +37,6 @@ msgstr "配色方案"
 #: ../contents/config/config.qml ../contents/ui/components/ScreenshotBtn.qml
 msgid "Screenshot"
 msgstr "截圖"
-
-#: ../contents/config/config.qml
-msgid "Support"
-msgstr "支援"
 
 #: ../contents/ui/components/Battery.qml ../contents/ui/pages/components/battery/BatteryItem.qml
 msgctxt "Placeholder is battery percentage"
@@ -228,10 +224,6 @@ msgstr "截圖前隱藏元件："
 #: ../contents/ui/config/configScreenshot.qml
 msgid "Screenshot Command (default is 'spectacle'):"
 msgstr "截圖指令（預設為 'spectacle'）："
-
-#: ../contents/ui/config/configSupport.qml
-msgid "I'd be very thankful if you like to support the development of this applet by donating or by simply spreading the word, TIA! :)"
-msgstr "如果您願意透過贊助或分享來支援本小程式的開發，我將不勝感激。預先感謝！ :)"
 
 #: ../contents/ui/js/funcs.js
 msgid "Disabled"

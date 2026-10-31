@@ -7,8 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: KdeControlStation\n"
-"Report-Msgid-Bugs-To: https://github.com/EliverLara/kde-control-station/tree/"
-"plasma6\n"
+"Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: 2025-08-27 23:11+0900\n"
 "Last-Translator: Hyeonwol123 <hyeonwol12345@kakao.com>\n"
@@ -42,10 +41,6 @@ msgstr "색상"
 #: ../contents/config/config.qml ../contents/ui/components/ScreenshotBtn.qml
 msgid "Screenshot"
 msgstr "스크린샷"
-
-#: ../contents/config/config.qml
-msgid "Support"
-msgstr ""
 
 #: ../contents/ui/components/Battery.qml
 #: ../contents/ui/pages/components/battery/BatteryItem.qml
@@ -237,12 +232,6 @@ msgstr ""
 
 #: ../contents/ui/config/configScreenshot.qml
 msgid "Screenshot Command (default is 'spectacle'):"
-msgstr ""
-
-#: ../contents/ui/config/configSupport.qml
-msgid ""
-"I'd be very thankful if you like to support the development of this applet "
-"by donating or by simply spreading the word, TIA! :)"
 msgstr ""
 
 #: ../contents/ui/js/funcs.js

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: KdeControlStation\n"
-"Report-Msgid-Bugs-To: https://github.com/EliverLara/kde-control-station/tree/plasma6\n"
+"Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Artem F. <PAN.VENA@UKR.NET>\n"
@@ -36,10 +36,6 @@ msgstr "Кольорові схеми"
 #: ../contents/config/config.qml ../contents/ui/components/ScreenshotBtn.qml
 msgid "Screenshot"
 msgstr "Знімок екрана"
-
-#: ../contents/config/config.qml
-msgid "Support"
-msgstr "Підтримка"
 
 #: ../contents/ui/components/Battery.qml ../contents/ui/pages/components/battery/BatteryItem.qml
 msgctxt "Placeholder is battery percentage"
@@ -227,10 +223,6 @@ msgstr ""
 #: ../contents/ui/config/configScreenshot.qml
 msgid "Screenshot Command (default is 'spectacle'):"
 msgstr ""
-
-#: ../contents/ui/config/configSupport.qml
-msgid "I'd be very thankful if you like to support the development of this applet by donating or by simply spreading the word, TIA! :)"
-msgstr "Був би дуже вдячний, якщо ви підтримаєте розробку цього аплету донатом або просто розповісте про нього — заздалегідь дякую! :)"
 
 #: ../contents/ui/js/funcs.js
 msgid "Disabled"

@@ -4,23 +4,23 @@
 
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |     232 |       |
-| de       | 229/232 |   98% |
-| es       |  36/232 |   15% |
-| fr       | 156/232 |   67% |
-| ko       | 199/232 |   85% |
-| nl       | 228/232 |   98% |
-| pl       | 228/232 |   98% |
-| pt_BR    | 218/232 |   93% |
-| ru       | 230/232 |   99% |
-| uk       | 226/232 |   97% |
-| zh_Hans  | 232/232 |  100% |
-| zh_Hant  | 232/232 |  100% |
+| Template |     230 |       |
+| de       | 227/230 |   98% |
+| es       |  36/230 |   15% |
+| fr       | 156/230 |   67% |
+| ko       | 199/230 |   86% |
+| nl       | 226/230 |   98% |
+| pl       | 226/230 |   98% |
+| pt_BR    | 218/230 |   94% |
+| ru       | 228/230 |   99% |
+| uk       | 224/230 |   97% |
+| zh_Hans  | 230/230 |  100% |
+| zh_Hant  | 230/230 |  100% |
 
 
 ## New Translations
 
-* Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/EliverLara/kde-control-station//issues/new), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
+* Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/James-C-000/kde-control-station/issues/new), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
 
 Or if you know how to make a pull request
 
