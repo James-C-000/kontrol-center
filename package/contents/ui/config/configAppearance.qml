@@ -64,7 +64,8 @@ KCM.SimpleKCM {
     property color cfg_slidersColor: Plasmoid.configuration.slidersColor
     property alias cfg_usePlasmaSliders: usePlasmaSliders.checked
 
-    property int numChecked: (layout.currentIndex == 1 ? showKDEConnect.checked : showColorSwitcher.checked) + showNightLight.checked + showCmd1.checked + showCmd2.checked + showScreenshot.checked
+    // KDE Connect takes one of the limited toggle slots in the Default and Control Center layouts
+    property int numChecked: (layout.currentIndex == 1 ? showKDEConnect.checked : showColorSwitcher.checked) + (layout.currentIndex == 0 ? showKDEConnect.checked : 0) + showNightLight.checked + showCmd1.checked + showCmd2.checked + showScreenshot.checked
     property int maxNum: layout.currentIndex == 0 && !showBrightness.checked ? 4 :  (layout.currentIndex == 2 || layout.currentIndex == 3 )? 6 : 2 
 
 
@@ -327,7 +328,7 @@ KCM.SimpleKCM {
             id: showKDEConnect
             Kirigami.FormData.label: i18n("Show quick toggle buttons:")
             text: i18n('KDE Connect')
-           // enabled: !checked && numChecked < maxNum || checked
+            enabled: layout.currentIndex > 1 || !checked && numChecked < maxNum || checked
         }
         CheckBox {
             id: showNightLight

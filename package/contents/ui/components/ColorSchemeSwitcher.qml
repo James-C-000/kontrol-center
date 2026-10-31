@@ -36,8 +36,8 @@ Lib.CardButton {
 
     onClicked: {
         var colorSchemeName = root.isDarkTheme ? root.generalLightTheme : root.generalDarkTheme
+        // root.isDarkTheme follows the applied scheme by itself; assigning it here would break that binding
         executable.swapColorScheme(`${command}"${colorSchemeName}"`);
-        root.isDarkTheme = !root.isDarkTheme
     }
 
     Plasma5Support.DataSource {

@@ -21,18 +21,22 @@ ColumnLayout {
         visible: header.children.length > 0
         
         Components.UserAvatar{
+            id: avatar
             isLongButton: true
             smallTopMargins: true
             smallBottomMargins: true
         }
+        // Without the avatar, the battery (or failing that the session actions) fills the row
         Components.Battery {
             id: mainBatteryWidget
+            Layout.fillWidth: !avatar.shown
             Layout.preferredWidth: header.Layout.preferredHeight * 1.7
-            Layout.maximumWidth: Layout.preferredWidth
+            Layout.maximumWidth: avatar.shown ? Layout.preferredWidth : Number.POSITIVE_INFINITY
         }
         Components.SystemActions{
+            Layout.fillWidth: !avatar.shown && !mainBatteryWidget.shown
             Layout.preferredWidth: header.Layout.preferredHeight
-            Layout.maximumWidth: Layout.preferredWidth
+            Layout.maximumWidth: Layout.fillWidth ? Number.POSITIVE_INFINITY : Layout.preferredWidth
         }
     }
 

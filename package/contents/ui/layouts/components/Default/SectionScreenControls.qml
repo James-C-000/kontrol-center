@@ -42,6 +42,11 @@ Lib.Card {
             Layout.maximumHeight: parent.height / 2
             Layout.alignment: Qt.AlignTop
         }
+        // KDE Connect lives here rather than beside Notifications, which the VPN tile now shares
+        Components.KDEConnect{
+            Layout.maximumHeight: parent.height / 2
+            Layout.alignment: Qt.AlignTop
+        }
         Components.ScreenshotBtn {
             Layout.maximumHeight: parent.height / 2
             Layout.alignment: Qt.AlignTop

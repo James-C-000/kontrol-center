@@ -46,7 +46,6 @@ Lib.Card {
             spacing: 1
             Components.DndButton{}
             Components.VpnBtn{}
-            Components.KDEConnect{}
         }
     }
 }

@@ -55,6 +55,11 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
 - Custom layout: widgets turned off in the settings no longer leave empty gaps, and tile labels shrink to fit
   narrow tiles before being cut off.
 - The Custom layout no longer logs a binding loop warning from its "Add new item" drop-down.
+- Default layout: KDE Connect moved in with the other optional toggles, since the VPN tile made its old row
+  uneven, and it now counts toward the toggle limit in the settings. Hiding the avatar lets the battery (or
+  the session actions) fill the top row instead of leaving it half empty.
+- The color scheme tile no longer stops the widget from following color scheme changes made elsewhere,
+  which left cards tinted for the wrong scheme.
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.
