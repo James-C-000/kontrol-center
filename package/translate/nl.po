@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: io.github.james-c-000.kontrolcenter\n"
-"Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/James-C-000/kontrol-center/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: 2025-09-06 11:46+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"

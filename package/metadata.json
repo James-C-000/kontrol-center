@@ -30,7 +30,7 @@
 			"Plasma/Applet"
 		],
 		"Version": "2.12.0",
-		"Website": "https://github.com/James-C-000/kde-control-station"
+		"Website": "https://github.com/James-C-000/kontrol-center"
 	},
 	"X-Plasma-API-Minimum-Version": "6.0",
 	"X-Plasma-MainScript": "ui/main.qml",
