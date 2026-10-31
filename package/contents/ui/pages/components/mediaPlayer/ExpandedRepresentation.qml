@@ -304,9 +304,8 @@ PlasmaExtras.Representation {
                 Layout.fillHeight: true
             }
 
-            Kirigami.Heading { // Song Title
+            PlasmaComponents3.Label { // Song Title
                 id: songTitle
-                level: 4
 
                 textFormat: Text.PlainText
                 wrapMode: Text.Wrap
@@ -320,10 +319,9 @@ PlasmaExtras.Representation {
                 Layout.alignment: Qt.AlignCenter
                 Layout.maximumWidth: detailsColumn.width
             }
-            Kirigami.Heading { // Song Artist
+            PlasmaComponents3.Label { // Song Artist
                 id: songArtist
                 visible: mediaPlayerPage.artist
-                level: 5
 
                 textFormat: Text.PlainText
                 fontSizeMode: Text.VerticalFit

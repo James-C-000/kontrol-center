@@ -76,8 +76,8 @@ Lib.Card {
                 onClicked: fullRep.togglePage();
             }
 
-            Kirigami.Heading {
-                level: 2
+            // A Label, not a Kirigami.Heading: Heading sets its own point size, which clashes with pixelSize
+            PlasmaComponents.Label {
                 text: page.sectionTitle
                 elide: Text.ElideRight
                 font.pixelSize: root.largeFontSize * 1.1
