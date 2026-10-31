@@ -16,6 +16,9 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
   Also available in the Custom layout.
 
 ### Changed
+- New plugin ID, `io.github.james-c-000.kdecontrolstation` (was `KdeControlStation`), so the KDE Store version
+  can't overwrite this fork. Widgets already in a panel need their `plugin=` entry in
+  `~/.config/plasma-org.kde.plasma.desktop-appletsrc` updated, or need to be added again.
 - Cards are flat surfaces tinted from the color scheme, with Breeze corner radii and an accent outline on hover,
   replacing the drop shadows and fixed outlines.
 - Fonts and spacing follow the system theme (still multiplied by the Scale setting).

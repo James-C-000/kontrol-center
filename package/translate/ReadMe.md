@@ -47,7 +47,7 @@ Since KDE Frameworks v5.37, translations can be bundled with the zipped `*.plasm
 The binary `.mo` translation files are placed in `package/contents/locale/` so you may want to add `*.mo` to your `.gitignore`.
 
 ```
-package/contents/locale/fr/LC_MESSAGES/plasma_applet_KdeControlStation.mo
+package/contents/locale/fr/LC_MESSAGES/plasma_applet_io.github.james-c-000.kdecontrolstation.mo
 ```
 
 ## Links

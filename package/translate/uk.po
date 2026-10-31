@@ -1,11 +1,11 @@
-# Translation of KdeControlStation in Ukrainian
+# Translation of io.github.james-c-000.kdecontrolstation in Ukrainian
 # Copyright (C) 2025
-# This file is distributed under the same license as the KdeControlStation package.
+# This file is distributed under the same license as the io.github.james-c-000.kdecontrolstation package.
 # Artem F. <PAN.VENA@UKR.NET>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: KdeControlStation\n"
+"Project-Id-Version: io.github.james-c-000.kdecontrolstation\n"
 "Report-Msgid-Bugs-To: https://github.com/James-C-000/kde-control-station/issues\n"
 "POT-Creation-Date: 2026-01-22 17:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"

@@ -57,8 +57,8 @@ systemctl --user restart plasma-plasmashell
 
 Then right-click your panel or desktop, choose **Add Widgets…** and add **KDE control station**.
 
-Don't install or update the widget through the KDE Store or Discover: it has the same ID as the original,
-so the store version would replace this fork.
+This fork has its own plugin ID (`io.github.james-c-000.kdecontrolstation`), so the original widget from the
+KDE Store or Discover installs separately and never replaces it.
 
 ### Notifications
 

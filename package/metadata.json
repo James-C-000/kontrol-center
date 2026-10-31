@@ -23,7 +23,7 @@
 		"Description[zh_Hans]": "基于 prayag2 杰作的现代化 Plasma 控制中心",
 		"Description[zh_Hant]": "基於 prayag2 傑作的現代化 Plasma 控制中心",
 		"Icon": "configure-toolbars",
-		"Id": "KdeControlStation",
+		"Id": "io.github.james-c-000.kdecontrolstation",
 		"License": "GPLv3",
 		"Name": "KDE control station",
 		"Name[de]": "KDE Kontrollzentrum",
