@@ -3,6 +3,7 @@ import QtQuick.Controls
 import org.kde.plasma.components as PlasmaComponents
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
 
 RowLayout {
 
@@ -25,6 +26,9 @@ RowLayout {
         model: availableWidgetsModel
         textRole: "displayName"
         visible: root.editingLayout && addingNewWidget
+        // Fixed size: Plasma's ComboBox sizes itself from its text field, which reports binding loops here
+        implicitWidth: Kirigami.Units.gridUnit * 10
+        implicitHeight: addWidgetBtn.implicitHeight
         font.pointSize: 10
     }
 

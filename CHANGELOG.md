@@ -54,6 +54,7 @@ Forked from [EliverLara/kde-control-station](https://github.com/EliverLara/kde-c
 - Tahoe layout: icon backgrounds are round to match its round tiles, instead of squares poking past their edges.
 - Custom layout: widgets turned off in the settings no longer leave empty gaps, and tile labels shrink to fit
   narrow tiles before being cut off.
+- The Custom layout no longer logs a binding loop warning from its "Add new item" drop-down.
 
 ### Removed
 - The "Enable transparency" and transparency level settings, which no longer apply to the new card style.
